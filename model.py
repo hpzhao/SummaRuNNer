@@ -84,14 +84,6 @@ class SummaRuNNer(nn.Module):
             novelty = -1 * torch.mm(torch.mm(h.view(1, -1), self.Wr), self.tanh(s))
             abs_pos = torch.mm(self.Wp, p)
             bias = self.b
-            #print '-------------------------------------------'
-            #print 'content: ' + str(content.data)
-            #print 'salience: ' + str(salience.data)
-            #print 'novelty: ' + str(novelty.data)
-            #print 'abs_pos: ' + str(abs_pos.data)
-            #print 'bias:' + str(bias.data)
-            #print 'x: ' + str(x.data)
-            #print '------------------------------------------'
             Prob = self.sigmoid(content + salience + novelty + abs_pos + bias)
             s = s + torch.mm(h, Prob)
             outputs.append(Prob)
