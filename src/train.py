@@ -71,9 +71,9 @@ for epoch in range(args.epochs):
         labels = Variable(torch.from_numpy(y)).cuda()
         labels = labels.float()
         # Forward + Backward + Optimize  
-        optimizer.zero_grad()
         outputs = net(sents)
         #print outputs
+        optimizer.zero_grad()
         loss = criterion(outputs, labels)
         loss_sum += loss.data[0]
         loss.backward()
