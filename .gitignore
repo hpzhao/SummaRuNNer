@@ -1,0 +1,4 @@
+result/*
+src/*.py[cod]
+log/*.log
+model/*
