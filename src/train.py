@@ -19,11 +19,11 @@ logging.basicConfig(level = logging.INFO, format = '%(asctime)s [INFO] %(message
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('--emb_file', type=str, default='../data/resource/embedding.pkl')
-parser.add_argument('--train_file', type=str, default='../data/resource/train_dataset.pkl')
-parser.add_argument('--validation_file', type=str, default='../data/resource/validation_dataset.pkl')
+parser.add_argument('--emb_file', type=str, default='../data/embedding.pkl')
+parser.add_argument('--train_file', type=str, default='../data/train.pkl')
+parser.add_argument('--validation_file', type=str, default='../data/validation.pkl')
 parser.add_argument('--model_file', type=str, default='../model/summary.model')
-parser.add_argument('--epochs', type=int, default=10)
+parser.add_argument('--epochs', type=int, default=5)
 parser.add_argument('--hidden', type=int, default=200)
 parser.add_argument('--lr', type=float, default=1e-4)
 
@@ -43,7 +43,7 @@ config = Config(
         sent_GRU_hidden_units = args.hidden,
         pretrained_embedding = pretrained_embedding)
 
-word2id = pkl.load(open('../data/resource/word2id.pkl'))
+word2id = pkl.load(open('../data/word2id.pkl'))
 
 logging.info('loadding train dataset')
 train_dataset = pkl.load(open(args.train_file))
@@ -80,7 +80,6 @@ for epoch in range(args.epochs):
         # gradient clipping
         torch.nn.utils.clip_grad_norm(net.parameters(), 1e-4)
         optimizer.step()
-        
         if step % 1000 == 0 and step != 0: 
             logging.info('Epoch ' + str(epoch) + ' Loss: ' + str(loss_sum / 1000.0))
             loss_sum = 0

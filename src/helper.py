@@ -62,11 +62,6 @@ def test(doc, probs, id):
     probs = [prob[0] for prob in probs]
     predict = [1 if prob >= 0.5 else 0 for prob in probs]
     
-    correct, total = 0, 0
-    for pre, gold in zip(predict, doc.label):
-        if pre == gold:
-            correct += 1
-        total += 1
     index = range(len(probs))
     probs = zip(probs,index)
     probs.sort(key = lambda x: x[0], reverse = True)
@@ -78,6 +73,11 @@ def test(doc, probs, id):
 
     ref = doc.summary
 
-    return correct, total
+    with open('../result/ref/ref.' + str(id) + '.summary', 'w') as f:
+        f.write('\n'.join(ref))
+    with open('../result/hyp/hyp.' + str(id) + '.summary', 'w') as f:
+        f.write('\n'.join(hyp))
+    
+    return hyp,doc.label, predict
 if __name__ == '__main__':
     pass

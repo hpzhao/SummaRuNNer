@@ -25,7 +25,7 @@ class SummaRuNNer(nn.Module):
         self.word_embedding = nn.Embedding(self.vocab_size, self.embedding_dim)
         self.word_embedding.weight.data.copy_(torch.from_numpy(config.pretrained_embedding))
         self.position_embedding = nn.Embedding(self.position_size, self.position_dim)
-        
+
         self.word_GRU = nn.GRU(
             input_size = self.word_input_size,
             hidden_size = self.word_GRU_hidden_units,
@@ -59,6 +59,8 @@ class SummaRuNNer(nn.Module):
      
     def forward(self, x):
         sequence_length = torch.sum(torch.sign(x), dim = 1).data
+        sequence_num = sequence_length.size()[0]
+
         # word level GRU
         word_features = self.word_embedding(x)
         word_outputs, _ = self.word_GRU(word_features)
@@ -82,9 +84,9 @@ class SummaRuNNer(nn.Module):
             content = torch.mm(self.Wc, h)
             salience = torch.mm(torch.mm(h.view(1, -1), self.Ws), doc)
             novelty = -1 * torch.mm(torch.mm(h.view(1, -1), self.Wr), self.tanh(s))
-            abs_pos = torch.mm(self.Wp, p)
+            position = torch.mm(self.Wp, p)
             bias = self.b
-            Prob = self.sigmoid(content + salience + novelty + abs_pos + bias)
+            Prob = self.sigmoid(content + salience + novelty + position + bias)
             s = s + torch.mm(h, Prob)
             outputs.append(Prob)
         
