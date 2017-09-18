@@ -13,7 +13,6 @@ from helper import DataLoader
 from helper import prepare_data
 from model import SummaRuNNer
 from torch.autograd import Variable
-from rouge import rouge
 
 torch.manual_seed(233)
 logging.basicConfig(level = logging.INFO, format = '%(asctime)s [INFO] %(message)s')

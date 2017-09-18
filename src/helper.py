@@ -78,11 +78,6 @@ def test(doc, probs, id):
 
     ref = doc.summary
 
-    with open('./temporary/ref/ref.' + str(id) + '.summary', 'w') as f:
-        f.write('\n'.join(ref))
-    with open('./temporary/hyp/hyp.' + str(id) + '.summary', 'w') as f:
-        f.write('\n'.join(hyp))
-    
     return correct, total
 if __name__ == '__main__':
     pass
