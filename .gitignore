@@ -1,4 +1,4 @@
 result/*
-src/*.py[cod]
+src/*.pyc
 log/*.log
 model/*
