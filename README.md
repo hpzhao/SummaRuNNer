@@ -1,3 +1,8 @@
+#### Requirement
+
++ Python2.7
++ PyTorch:0.1.12
+
 #### Download Data:  
 
 + 百度云:[http://pan.baidu.com/s/1eRHVnCQ](http://pan.baidu.com/s/1eRHVnCQ) 密码:4swu  
