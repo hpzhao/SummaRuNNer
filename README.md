@@ -1,5 +1,4 @@
-![](https://img.shields.io/badge/license-MIT-000000.svg)
-
+[![License](https://img.shields.io/badge/license-MIT-000000.svg)](https://opensource.org/licenses/MIT)
 #### Requirements
 
 + Python2.7
