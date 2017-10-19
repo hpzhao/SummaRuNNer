@@ -1,6 +1,5 @@
 ## SummaRuNNer:A PyTorch Implementation
 
-[![GitHub Issues](https://img.shields.io/github/hpzhao/SummaRuNNer.svg)](https://github.com/hpzhao/SummaRuNNer/issues)
 [![License](https://img.shields.io/badge/license-MIT-000000.svg)](https://opensource.org/licenses/MIT)
 
 
