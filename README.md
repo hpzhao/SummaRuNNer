@@ -1,10 +1,15 @@
+## SummaRuNNer:A PyTorch Implementation
+
+[![GitHub Issues](https://img.shields.io/github/issues-raw/badges/shields.svg)](https://github.com/hpzhao/SummaRuNNer/issues)
 [![License](https://img.shields.io/badge/license-MIT-000000.svg)](https://opensource.org/licenses/MIT)
-#### Requirements
+
+
+### Requirements
 
 + Python2.7
 + PyTorch:0.1.12
 
-#### Download Data:  
+### Download Data:  
 
 + 百度云:[http://pan.baidu.com/s/1eRHVnCQ](http://pan.baidu.com/s/1eRHVnCQ) 密码:4swu  
 
