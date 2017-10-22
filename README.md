@@ -1,4 +1,4 @@
-# A PyTorch Implementation Of SummaRuNNer
+# The PyTorch Implementation Of SummaRuNNer
 
 [![License](https://img.shields.io/badge/license-MIT-000000.svg)](https://opensource.org/licenses/MIT)
 
