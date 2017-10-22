@@ -45,19 +45,6 @@ logging.info('loadding test dataset')
 test_dataset = pkl.load(open(args.test_file))
 test_loader = DataLoader(test_dataset, shuffle = False)
 
-num_of_docs = len(test_dataset)
-total_length = 0
-total_summary = 0
-total_reference = 0
-for docs in test_loader:
-    doc = docs[0]
-    total_length += len(doc.label)
-    total_summary += sum(doc.label)
-    total_reference += len(doc.summary)
-print 'total docs:    ' + str(num_of_docs)
-print 'avg_length:    ' + str(total_length * 1.0 / num_of_docs)
-print 'avg_summary:   ' + str(total_summary * 1.0 / num_of_docs)
-print 'avg_reference: ' + str(total_reference * 1.0 / num_of_docs)
 net = SummaRuNNer(config).cuda()
 net.load_state_dict(torch.load(args.model_file))
 
