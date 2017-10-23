@@ -53,13 +53,13 @@ class SummaRuNNer(nn.Module):
     def _avg_pooling(self, x, sequence_length):
         result = []
         for index, data in enumerate(x):
-            avg_pooling = torch.mean(data[:sequence_length[index][0], :], dim = 0)
+            avg_pooling = torch.mean(data[:sequence_length[index], :], dim = 0)
             result.append(avg_pooling)
         return torch.cat(result, dim = 0) 
      
     def forward(self, x):
-        sequence_length = torch.sum(torch.sign(x), dim = 1).data
-        sequence_num = sequence_length.size()[0]
+        sequence_length = torch.sum(torch.sign(x), dim = 1).data.view(-1).tolist()
+        sequence_num = len(sequence_length)
 
         # word level GRU
         word_features = self.word_embedding(x)
@@ -68,7 +68,7 @@ class SummaRuNNer(nn.Module):
         sent_features = self._avg_pooling(word_outputs, sequence_length)
         sent_outputs, _ = self.sent_GRU(sent_features.view(1, -1, self.sent_input_size))
         # document representation
-        doc_features = self._avg_pooling(sent_outputs, [[x.size(0)]])
+        doc_features = self._avg_pooling(sent_outputs, [sequence_num])
         doc = torch.transpose(self.tanh(self.fc1(doc_features)), 0, 1)
         # classifier layer
         outputs = []
