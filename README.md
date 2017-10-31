@@ -3,6 +3,10 @@
 [![License](https://img.shields.io/badge/license-MIT-000000.svg)](https://opensource.org/licenses/MIT)
 
 
+## Blog
+
+[用PyTorch搭建抽取式摘要系统](http://mp.weixin.qq.com/s/9X77MPcQOQPwZaOVIVfo9Q)
+
 ## Requirements
 
 + Python2.7
