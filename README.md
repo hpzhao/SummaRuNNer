@@ -2,10 +2,15 @@
 
 [![License](https://img.shields.io/badge/license-MIT-000000.svg)](https://opensource.org/licenses/MIT)
 
+## UPDATE
+
++ 2017-12-17: `embedding.pkl` and `word2id.pkl`
+
 ## TODO
 
 + PyTorch Version: 0.1.12 --> 0.3
 + more flexible arguments
++ import torchtext
 
 ## Blog
 
@@ -18,7 +23,7 @@
 
 ## Download Data:  
 
-+ 百度云:[http://pan.baidu.com/s/1eRHVnCQ](http://pan.baidu.com/s/1eRHVnCQ) 密码:4swu  
++ 百度云:[https://pan.baidu.com/s/1dFfIRBV](https://pan.baidu.com/s/1dFfIRBV) 密码：1r8x
 
 + Google Driver:[data.tar.gz](https://drive.google.com/file/d/0BwPf3LsqxMV2eXhtQkV1QkJhN2c/view?usp=sharing)
 
