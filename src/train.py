@@ -15,7 +15,6 @@ from helper import prepare_data
 from model import SummaRuNNer
 from torch.autograd import Variable
 
-torch.manual_seed(233)
 logging.basicConfig(level = logging.INFO, format = '%(asctime)s [INFO] %(message)s')
 
 parser = argparse.ArgumentParser()
