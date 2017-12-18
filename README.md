@@ -2,6 +2,11 @@
 
 [![License](https://img.shields.io/badge/license-MIT-000000.svg)](https://opensource.org/licenses/MIT)
 
+## Statement
+
++ Sample Code, Not Official
++ Ugly Code, need reconfiguration!!!
+
 ## UPDATE
 
 + 2017-12-17: `embedding.pkl` and `word2id.pkl`
@@ -28,3 +33,7 @@
 + Google Driver:[data.tar.gz](https://drive.google.com/file/d/0BwPf3LsqxMV2eXhtQkV1QkJhN2c/view?usp=sharing)
 
 + Source Data:[Neural Summarization by Extracting Sentences and Words](https://docs.google.com/uc?id=0B0Obe9L1qtsnSXZEd0JCenIyejg&export=download)
+
+## Evaluation
+
++ [Tools](https://github.com/hpzhao/nlp-metrics)
