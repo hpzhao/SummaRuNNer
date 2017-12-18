@@ -5,8 +5,6 @@ import torch.nn as nn
 from torch.autograd import Variable
 from torch.nn import Parameter
 
-torch.manual_seed(233)
-
 class SummaRuNNer(nn.Module):
     def __init__(self, config):
         super(SummaRuNNer, self).__init__()

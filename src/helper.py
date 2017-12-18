@@ -4,8 +4,6 @@ from copy import deepcopy
 import numpy
 import random
 
-random.seed(1234)
-
 Config = namedtuple('parameters',
         ['vocab_size', 'embedding_dim', 'position_size','position_dim','word_input_size','sent_input_size',
         'word_GRU_hidden_units','sent_GRU_hidden_units','pretrained_embedding'])

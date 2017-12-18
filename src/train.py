@@ -5,6 +5,7 @@ import logging
 import torch
 import argparse
 import sys
+import random
 import cPickle as pkl
 import torch.nn as nn
 from helper import Config
@@ -26,8 +27,14 @@ parser.add_argument('--model_file', type=str, default='../model/summary.model')
 parser.add_argument('--epochs', type=int, default=5)
 parser.add_argument('--hidden', type=int, default=200)
 parser.add_argument('--lr', type=float, default=1e-4)
+parser.add_argument('--seed', type=int, default=1)
 
 args = parser.parse_args()
+
+# set seed
+torch.manual_seed(args.seed)
+torch.cuda.manual_seed(args.seed)
+random.seed(args.seed)
 
 logging.info('generate config')
 
