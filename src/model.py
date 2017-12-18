@@ -55,7 +55,7 @@ class SummaRuNNer(nn.Module):
         for index, data in enumerate(x):
             avg_pooling = torch.mean(data[:sequence_length[index], :], dim = 0)
             result.append(avg_pooling)
-        return torch.cat(result, dim = 0) 
+        return torch.cat(result, dim = 0)
      
     def forward(self, x):
         sequence_length = torch.sum(torch.sign(x), dim = 1).data.view(-1).tolist()
@@ -69,7 +69,7 @@ class SummaRuNNer(nn.Module):
         sent_outputs, _ = self.sent_GRU(sent_features.view(1, -1, self.sent_input_size))
         # document representation
         doc_features = self._avg_pooling(sent_outputs, [sequence_num])
-        doc = torch.transpose(self.tanh(self.fc1(doc_features)), 0, 1)
+        doc = torch.transpose(self.tanh(self.fc1(doc_features.view(1,-1))), 0, 1)
         # classifier layer
         outputs = []
         sent_outputs = sent_outputs.view(-1, 2 * self.sent_GRU_hidden_units)
