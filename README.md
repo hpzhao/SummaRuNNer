@@ -5,7 +5,7 @@
 ## Statement
 
 + Sample Code, Not Official
-+ Ugly Code, need reconfiguration!!!
++ Need reconfiguration
 
 ## UPDATE
 
@@ -16,6 +16,7 @@
 + PyTorch Version: 0.1.12 --> 0.3
 + more flexible arguments
 + import torchtext
++ batch support
 
 ## Blog
 
