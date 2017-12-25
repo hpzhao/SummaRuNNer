@@ -14,16 +14,19 @@ from helper import test
 from model import SummaRuNNer
 from torch.autograd import Variable
 
-torch.manual_seed(233)
 logging.basicConfig(level = logging.INFO, format = '%(asctime)s [INFO] %(message)s')
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('--emb_file', type=str, default='../data/embedding.pkl')
-parser.add_argument('--test_file', type=str, default='../data/test.pkl')
-parser.add_argument('--model_file', type=str, default='../model/summary.model')
-parser.add_argument('--hidden', type=int, default=200)
+parser.add_argument('-emb_file', type=str, default='../data/embedding.pkl')
+parser.add_argument('-test_file', type=str, default='../data/test.pkl')
+parser.add_argument('-model_file', type=str, default='../model/summary.model')
+parser.add_argument('-hidden', type=int, default=200)
+parser.add_argument('-gpu', type=int, default=0)
+
 args = parser.parse_args()
+
+torch.cuda.set_device(args.gpu)
 
 logging.info('generate config')
 

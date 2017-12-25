@@ -19,14 +19,15 @@ logging.basicConfig(level = logging.INFO, format = '%(asctime)s [INFO] %(message
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('--emb_file', type=str, default='../data/embedding.pkl')
-parser.add_argument('--train_file', type=str, default='../data/train.pkl')
-parser.add_argument('--validation_file', type=str, default='../data/validation.pkl')
-parser.add_argument('--model_file', type=str, default='../model/summary.model')
-parser.add_argument('--epochs', type=int, default=5)
-parser.add_argument('--hidden', type=int, default=200)
-parser.add_argument('--lr', type=float, default=1e-4)
-parser.add_argument('--seed', type=int, default=1)
+parser.add_argument('-emb_file', type=str, default='../data/embedding.pkl')
+parser.add_argument('-train_file', type=str, default='../data/train.pkl')
+parser.add_argument('-validation_file', type=str, default='../data/validation.pkl')
+parser.add_argument('-model_file', type=str, default='../model/summary.model')
+parser.add_argument('-epochs', type=int, default=5)
+parser.add_argument('-hidden', type=int, default=200)
+parser.add_argument('-lr', type=float, default=1e-4)
+parser.add_argument('-seed', type=int, default=1)
+parser.add_argument('-gpu', type=int, default=0)
 
 args = parser.parse_args()
 
@@ -34,6 +35,9 @@ args = parser.parse_args()
 torch.manual_seed(args.seed)
 torch.cuda.manual_seed(args.seed)
 random.seed(args.seed)
+
+# set cuda device
+torch.cuda.set_device(args.gpu)
 
 logging.info('generate config')
 
