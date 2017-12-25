@@ -57,7 +57,6 @@ def prepare_data(doc, word2id):
     return sent_array, label_array
 
 def test(doc, probs, id):
-    probs = [prob[0] for prob in probs]
     predict = [1 if prob >= 0.5 else 0 for prob in probs]
     
     index = range(len(probs))
