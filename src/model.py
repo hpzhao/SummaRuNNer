@@ -87,5 +87,5 @@ class SummaRuNNer(nn.Module):
             Prob = self.sigmoid(content + salience + novelty + position + bias)
             s = s + torch.mm(h, Prob)
             outputs.append(Prob)
-        
-        return torch.cat(outputs, dim = 0) 
+
+        return torch.cat(outputs).squeeze() 

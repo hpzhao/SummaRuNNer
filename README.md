@@ -13,7 +13,6 @@
 
 ## TODO
 
-+ PyTorch Version: 0.1.12 --> 0.3
 + more flexible arguments
 + import torchtext
 + batch support
