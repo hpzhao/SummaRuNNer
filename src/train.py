@@ -21,7 +21,7 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument('-emb_file', type=str, default='../data/embedding.pkl')
 parser.add_argument('-train_file', type=str, default='../data/train.pkl')
-parser.add_argument('-validation_file', type=str, default='../data/validation.pkl')
+parser.add_argument('-validation_file', type=str, default='../data/val.pkl')
 parser.add_argument('-model_file', type=str, default='../model/summary.model')
 parser.add_argument('-epochs', type=int, default=5)
 parser.add_argument('-hidden', type=int, default=200)
