@@ -28,7 +28,7 @@
 
 ## Download Data:  
 
-+ 百度云:[https://pan.baidu.com/s/1dFfIRBV](https://pan.baidu.com/s/1dFfIRBV) 密码：1r8x
++ 百度云:[https://pan.baidu.com/s/1dFfIRBV](https://pan.baidu.com/s/1gfQwYSN) 密码:`eo6o`
 
 + Google Driver:[data.tar.gz](https://drive.google.com/file/d/1zxSDpVKeCIdFkGPSSwzuY0aKodM--bjk/view?usp=sharing)
 
