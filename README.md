@@ -9,7 +9,7 @@
 
 ## UPDATE
 
-+ 2017-12-17: `embedding.pkl` and `word2id.pkl`
++ 2018-1-6: fix bug in data
 
 ## TODO
 
