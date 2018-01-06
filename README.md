@@ -24,7 +24,6 @@
 ## Requirements
 
 + Python2.7
-+ PyTorch:0.1.12
 
 ## Download Data:  
 
