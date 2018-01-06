@@ -30,7 +30,7 @@
 
 + 百度云:[https://pan.baidu.com/s/1dFfIRBV](https://pan.baidu.com/s/1dFfIRBV) 密码：1r8x
 
-+ Google Driver:[data.tar.gz]()
++ Google Driver:[data.tar.gz](https://drive.google.com/file/d/1zxSDpVKeCIdFkGPSSwzuY0aKodM--bjk/view?usp=sharing)
 
 + Source Data:[Neural Summarization by Extracting Sentences and Words](https://docs.google.com/uc?id=0B0Obe9L1qtsnSXZEd0JCenIyejg&export=download)
 
