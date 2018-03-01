@@ -5,7 +5,7 @@
 ## Statement
 
 + Sample Code, Not Official
-+ Need reconfiguration
++ Need reconfiguration in a few days
 
 ## UPDATE
 
@@ -14,7 +14,7 @@
 ## TODO
 
 + more flexible arguments
-+ import torchtext
++ torch.utils.data.Dataset and torch.utils.data.DataLoader
 + batch support
 
 ## Blog
