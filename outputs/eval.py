@@ -29,7 +29,7 @@ def rouge():
     r.system_filename_pattern = '(\d+).txt'
     r.model_filename_pattern = '#ID#.txt'
 
-    command = '-e /users2/hpzhao/project/nlp-metrics/ROUGE-1.5.5/data -a -c 95 -m -n 2 -b 75'
+    command = '-e /YOUR/PATH/TO/ROUGE-1.5.5/data -a -c 95 -m -n 2 -b 75'
     output = r.convert_and_evaluate(rouge_args=command)
     print output
 
