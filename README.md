@@ -1,16 +1,15 @@
-# The PyTorch Implementation Of SummaRuNNer
+## The PyTorch Implementation Of SummaRuNNer
 
 [![License](https://img.shields.io/badge/license-MIT-000000.svg)](https://opensource.org/licenses/MIT)
+### SummaRuNNer
 
-## Statement
+![](images/model.jpg)
 
-+ Sample Code, Not Official
-
-## Blog
+### Blog
 
 + [用PyTorch搭建抽取式摘要系统](http://mp.weixin.qq.com/s/9X77MPcQOQPwZaOVIVfo9Q)
 
-## Download Data:  
+### Download Data:  
 
 + 百度云:[https://pan.baidu.com/s/1jR77aWQDzw-pTgOjrSnszQ](https://pan.baidu.com/s/1jR77aWQDzw-pTgOjrSnszQ) 密码:`8t6v`
 
@@ -18,6 +17,6 @@
 
 + Source Data:[Neural Summarization by Extracting Sentences and Words](https://docs.google.com/uc?id=0B0Obe9L1qtsnSXZEd0JCenIyejg&export=download)
 
-## Evaluation
+### Evaluation
 
 + [Tools](https://github.com/hpzhao/nlp-metrics)
