@@ -5,31 +5,16 @@
 ## Statement
 
 + Sample Code, Not Official
-+ Need reconfiguration in a few days
-
-## UPDATE
-
-+ 2018-1-6: fix bug in data
-
-## TODO
-
-+ more flexible arguments
-+ torch.utils.data.Dataset and torch.utils.data.DataLoader
-+ batch support
 
 ## Blog
 
 + [用PyTorch搭建抽取式摘要系统](http://mp.weixin.qq.com/s/9X77MPcQOQPwZaOVIVfo9Q)
 
-## Requirements
-
-+ Python2.7
-
 ## Download Data:  
 
-+ 百度云:[https://pan.baidu.com/s/1dFfIRBV](https://pan.baidu.com/s/1gfQwYSN) 密码:`eo6o`
++ 百度云:[https://pan.baidu.com/s/1jR77aWQDzw-pTgOjrSnszQ](https://pan.baidu.com/s/1jR77aWQDzw-pTgOjrSnszQ) 密码:`8t6v`
 
-+ Google Driver:[data.tar.gz](https://drive.google.com/file/d/1zxSDpVKeCIdFkGPSSwzuY0aKodM--bjk/view?usp=sharing)
++ Google Driver:[data.tar.gz](https://drive.google.com/file/d/1TbeY58G5jCEsj4ZakadR-dM1dfYHMein/view?usp=sharing)
 
 + Source Data:[Neural Summarization by Extracting Sentences and Words](https://docs.google.com/uc?id=0B0Obe9L1qtsnSXZEd0JCenIyejg&export=download)
 
