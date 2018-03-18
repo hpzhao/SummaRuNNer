@@ -9,11 +9,12 @@
 ### Result
 
 #### DailyMail(75 bytes)
+<div  align="center">
 | model  | ROUGE-1   | ROUGE-2 | ROUGE-L |
 | ------ | :-----:   | :----:  | :----:  |
 |SummaRNNer(Nallapati)|26.2|10.8|14.4|
 |Our implementation|26.0|11.4|13.8|
-
+</div>
 
 ### Blog
 
