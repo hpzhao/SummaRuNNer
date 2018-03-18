@@ -8,7 +8,8 @@
 
 ### Result
 
-#### DailyMail(75 bytes)
+#### DailyMail(75 bytes)  
+
 | model  | ROUGE-1   | ROUGE-2 | ROUGE-L |
 | ------ | :-----:   | :----:  | :----:  |
 |SummaRNNer(Nallapati)|26.2|10.8|14.4|
