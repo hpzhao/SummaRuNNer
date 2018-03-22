@@ -6,6 +6,15 @@
 <img src="images/model.jpg" width = "350" height = "350" align=center />
 </div>
 
+### Usage  
+
+```shell
+# train
+python main.py -device 0 -batch_size 32 -model RNN -seed 1
+# test
+python main.py -test -model RNN -load_dir checkpoints/XXX.pt
+
+```
 ### Result
 
 #### DailyMail(75 bytes)  
