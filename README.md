@@ -10,7 +10,7 @@
 
 ```shell
 # train
-python main.py -device 0 -batch_size 32 -model RNN -seed 1
+python main.py -device 0 -batch_size 32 -model RNN -seed 1 -save_dir checkpoints/XXX.pt
 # test
 python main.py -test -model RNN -load_dir checkpoints/XXX.pt
 
