@@ -41,15 +41,20 @@ parser.add_argument('-ref',type=str,default='outputs/ref')
 parser.add_argument('-hyp',type=str,default='outputs/hyp')
 parser.add_argument('-topk',type=int,default=3)
 # device
-parser.add_argument('-device',type=int,default=0)
+parser.add_argument('-device',type=int)
 # option
 parser.add_argument('-test',action='store_true')
 parser.add_argument('-debug',action='store_true')
 parser.add_argument('-predict',action='store_true')
 args = parser.parse_args()
+use_gpu = args.device is not None
+
+if torch.cuda.is_available() and not use_gpu:
+    print("WARNING: You have a CUDA device, should run with -device 0")
 
 # set cuda device and seed
-torch.cuda.set_device(args.device)
+if use_gpu:
+    torch.cuda.set_device(args.device)
 torch.cuda.manual_seed(args.seed)
 torch.manual_seed(args.seed)
 random.seed(args.seed)
@@ -61,7 +66,10 @@ def eval(net,vocab,data_iter,criterion):
     batch_num = 0
     for batch in data_iter:
         features,targets,_,doc_lens = vocab.make_features(batch)
-        features,targets = Variable(features).cuda(),Variable(targets.float()).cuda()
+        features,targets = Variable(features), Variable(targets.float())
+        if use_gpu:
+            features = features.cuda()
+            targets = targets.cuda()
         probs = net(features,doc_lens)
         loss = criterion(probs,targets)
         total_loss += loss.data[0]
@@ -79,7 +87,9 @@ def train():
     args.embed_num = embed.size(0)
     args.embed_dim = embed.size(1)
     # build model
-    net = getattr(models,args.model)(args,embed).cuda()
+    net = getattr(models,args.model)(args,embed)
+    if use_gpu:
+        net = net.cuda()
     # load dataset
     train_iter = DataLoader(dataset=torch.load(args.train_dir),
             batch_size=args.batch_size,
@@ -102,7 +112,10 @@ def train():
     for epoch in range(1,args.epochs+1):
         for i,batch in enumerate(train_iter):
             features,targets,_,doc_lens = vocab.make_features(batch)
-            features,targets = Variable(features).cuda(),Variable(targets.float()).cuda()
+            features,targets = Variable(features), Variable(targets.float())
+            if use_gpu:
+                features = features.cuda()
+                targets = targets.cuda()
             probs = net(features,doc_lens)
             loss = criterion(probs,targets)
             optimizer.zero_grad()
@@ -132,7 +145,8 @@ def test():
     checkpoint = torch.load(args.load_dir)
     net = getattr(models,args.model)(checkpoint['args'])
     net.load_state_dict(checkpoint['model'])
-    net.cuda()
+    if use_gpu:
+        net.cuda()
     net.eval()
     
     doc_num = len(test_dataset)
@@ -141,7 +155,10 @@ def test():
     for batch in tqdm(test_iter):
         features,_,summaries,doc_lens = vocab.make_features(batch)
         t1 = time()
-        probs = net(Variable(features).cuda(),doc_lens)
+        if use_gpu:
+            probs = net(Variable(features).cuda(), doc_lens)
+        else:
+            probs = net(Variable(features), doc_lens)
         t2 = time()
         time_cost += t2 - t1
         start = 0

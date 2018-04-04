@@ -1,3 +1,4 @@
-models/*.pyc
-utils/*.pyc
+*.pyc
+__pycache__
+*.pt
 
