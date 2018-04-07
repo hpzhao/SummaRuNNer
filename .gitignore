@@ -1,7 +1,15 @@
 *.pyc
 __pycache__
+
 checkpoints/*
 !checkpoints/.placeholder
+
 data/*
 !data/.placeholder
+
+outputs/hyp/*
+!outputs/hyp/.placeholder
+
+outputs/ref/*
+!outputs/ref/.placeholder
 
