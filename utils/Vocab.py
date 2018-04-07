@@ -1,10 +1,11 @@
 import torch
 
 class Vocab():
-    def __init__(self,embed,word2id,id2word):
+    def __init__(self,embed,word2id):
         self.embed = embed
         self.word2id = word2id
-        self.id2word = id2word
+        self.id2word = {v:k for k,v in word2id.items()}
+        assert len(self.word2id) == len(self.id2word)
         self.PAD_IDX = 0
         self.UNK_IDX = 1
         self.PAD_TOKEN = 'PAD_TOKEN'
