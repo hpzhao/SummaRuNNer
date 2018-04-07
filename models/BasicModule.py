@@ -36,7 +36,10 @@ class BasicModule(torch.nn.Module):
         return best_path
 
     def load(self, best_path):
-        data = torch.load(best_path)['model']
+        if self.args.device is not None:
+            data = torch.load(best_path)['model']
+        else:
+            data = torch.load(best_path, map_location=lambda storage, loc: storage)['model']
         self.load_state_dict(data)
         if self.args.device is not None:
             return self.cuda()
