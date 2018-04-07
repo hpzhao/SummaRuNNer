@@ -129,7 +129,7 @@ def train():
                 cur_loss = eval(net,vocab,val_iter,criterion)
                 if cur_loss < min_loss:
                     min_loss = cur_loss
-                    best_path = net.save(args) 
+                    best_path = net.save()
                 logging.info('Epoch: %2d Min_Val_Loss: %f Cur_Val_Loss: %f'
                         % (epoch,min_loss,cur_loss))
     t2 = time()
