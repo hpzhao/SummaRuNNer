@@ -1,5 +1,7 @@
 *.pyc
 __pycache__
+checkpoints/*
+!checkpoints/.placeholder
 data/*
 !data/.placeholder
 
