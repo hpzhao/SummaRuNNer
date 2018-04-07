@@ -202,10 +202,10 @@ def test():
             doc = batch['doc'][doc_id].split('\n')[:doc_len]
             hyp = [doc[index] for index in topk_indices]
             ref = summaries[doc_id]
-            with open(os.path.join(args.ref,str(file_id)+'.txt'),'w') as f:
-                f.write(ref)
-            with open(os.path.join(args.hyp,str(file_id)+'.txt'),'w') as f:
-                f.write('\n'.join(hyp))
+            with io.open(os.path.join(args.ref,str(file_id)+'.txt'), 'w', encoding='utf-8') as f:
+                f.write(unicode(ref))
+            with io.open(os.path.join(args.hyp,str(file_id)+'.txt'), 'w', encoding='utf-8') as f:
+                f.write(unicode('\n'.join(hyp)))
             start = stop
             file_id = file_id + 1
     print('Speed: %.2f docs / s' % (doc_num / time_cost))
