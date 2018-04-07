@@ -167,11 +167,9 @@ def test():
                             shuffle=False)
     checkpoint = torch.load(args.load_dir)
     net = getattr(models,args.model)(checkpoint['args'])
+    net.load_state_dict(checkpoint['model'])
     if use_gpu:
-        net.load_state_dict(torch.load(checkpoint['model']))
-        net = net.cuda()
-    else:
-        net.load_state_dict(torch.load(checkpoint['model'], map_location=lambda storage, loc: storage))
+        net.cuda()
     net.eval()
     
     doc_num = len(test_dataset)
