@@ -1,11 +1,15 @@
 #!/usr/bin/env python
 #coding:utf8
-from __future__ import print_function,division
+from __future__ import print_function, division, unicode_literals
+import io
+import json
 import models
+import utils
 import argparse,random,logging,numpy,os
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import numpy as np
 from torch.autograd import Variable
 from torch.utils.data import DataLoader
 from torch.nn.utils import clip_grad_norm
@@ -28,15 +32,16 @@ parser.add_argument('-lr',type=float,default=1e-3)
 parser.add_argument('-batch_size',type=int,default=32)
 parser.add_argument('-epochs',type=int,default=5)
 parser.add_argument('-seed',type=int,default=1)
-parser.add_argument('-train_dir',type=str,default='data/train.pt')
-parser.add_argument('-val_dir',type=str,default='data/val.pt')
-parser.add_argument('-vocab',type=str,default='data/vocab.pt')
+parser.add_argument('-train_dir',type=str,default='data/train.json')
+parser.add_argument('-val_dir',type=str,default='data/val.json')
+parser.add_argument('-embedding',type=str,default='data/embedding.npz')
+parser.add_argument('-word2id',type=str,default='data/word2id.json')
 parser.add_argument('-report_every',type=int,default=1500)
 parser.add_argument('-seq_trunc',type=int,default=50)
 parser.add_argument('-max_norm',type=float,default=1.0)
 # test
 parser.add_argument('-load_dir',type=str,default='checkpoints/RNN_seed_1.pt')
-parser.add_argument('-test_dir',type=str,default='data/test.pt')
+parser.add_argument('-test_dir',type=str,default='data/test.json')
 parser.add_argument('-ref',type=str,default='outputs/ref')
 parser.add_argument('-hyp',type=str,default='outputs/hyp')
 parser.add_argument('-topk',type=int,default=3)
@@ -81,8 +86,19 @@ def eval(net,vocab,data_iter,criterion):
 def train():
     logging.info('Loading vocab,train and val dataset.Wait a second,please')
     
-    vocab = torch.load(args.vocab)
-    embed = vocab.embed
+    embed = torch.Tensor(np.load(args.embedding)['embedding'])
+    with io.open(args.word2id, encoding='utf-8') as f:
+        word2id = json.load(f)
+    vocab = utils.Vocab(embed, word2id)
+
+    with io.open(args.train_dir, encoding='utf-8') as f:
+        examples = [json.loads(line) for line in f]
+    train_dataset = utils.Dataset(examples)
+
+    with io.open(args.val_dir, encoding='utf-8') as f:
+        examples = [json.loads(line) for line in f]
+    val_dataset = utils.Dataset(examples)
+
     # update args
     args.embed_num = embed.size(0)
     args.embed_dim = embed.size(1)
@@ -91,10 +107,10 @@ def train():
     if use_gpu:
         net = net.cuda()
     # load dataset
-    train_iter = DataLoader(dataset=torch.load(args.train_dir),
+    train_iter = DataLoader(dataset=train_dataset,
             batch_size=args.batch_size,
             shuffle=True)
-    val_iter = DataLoader(dataset=torch.load(args.val_dir),
+    val_iter = DataLoader(dataset=val_dataset,
             batch_size=args.batch_size,
             shuffle=False)
     # loss function
@@ -137,8 +153,15 @@ def train():
 
 def test():
      
-    vocab = torch.load(args.vocab)
-    test_dataset = torch.load(args.test_dir)
+    embed = torch.Tensor(np.load(args.embedding)['embedding'])
+    with io.open(args.word2id, encoding='utf-8') as f:
+        word2id = json.load(f)
+    vocab = utils.Vocab(embed, word2id)
+
+    with io.open(args.test_dir, encoding='utf-8') as f:
+        examples = [json.loads(line) for line in f]
+    test_dataset = utils.Dataset(examples)
+
     test_iter = DataLoader(dataset=test_dataset,
                             batch_size=args.batch_size,
                             shuffle=False)
