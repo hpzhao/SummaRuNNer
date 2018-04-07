@@ -105,7 +105,7 @@ def train():
     # build model
     net = getattr(models,args.model)(args,embed)
     if use_gpu:
-        net = net.cuda()
+        net.cuda()
     # load dataset
     train_iter = DataLoader(dataset=train_dataset,
             batch_size=args.batch_size,
@@ -165,7 +165,10 @@ def test():
     test_iter = DataLoader(dataset=test_dataset,
                             batch_size=args.batch_size,
                             shuffle=False)
-    checkpoint = torch.load(args.load_dir)
+    if use_gpu:
+        checkpoint = torch.load(args.load_dir)
+    else:
+        checkpoint = torch.load(args.load_dir, map_location=lambda storage, loc: storage)
     net = getattr(models,args.model)(checkpoint['args'])
     net.load_state_dict(checkpoint['model'])
     if use_gpu:
