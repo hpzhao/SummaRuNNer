@@ -42,4 +42,4 @@ python main.py -test -model RNN -load_dir checkpoints/XXX.pt
 
 ### Acknowledge
 
-Thanks for @[AlJohri](https://github.com/AlJohri)'s contribution
++ Thanks for @[AlJohri](https://github.com/AlJohri)'s contribution
