@@ -6,6 +6,15 @@
 <img src="images/model.jpg" width = "350" height = "350" align=center />
 </div>
 
+### Setup
+
+Requires [pipenv](https://docs.pipenv.org/). Use `pip install pipenv` if not installed.
+
+```
+pipenv install
+pipenv shell
+```
+
 ### Usage  
 
 ```shell
