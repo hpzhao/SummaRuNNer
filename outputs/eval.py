@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#coding:utf8
 from __future__ import print_function
 import os
 from pyrouge import Rouge155
@@ -8,12 +7,12 @@ def remove_broken_files():
     error_id = []
     for f in os.listdir('ref'):
         try:
-            open('ref/' + f).read().decode('utf8')
+            open('ref/' + f).read()
         except:
             error_id.append(f)
     for f in os.listdir('hyp'):
         try:
-            open('hyp/' + f).read().decode('utf8')
+            open('hyp/' + f).read()
         except:
             error_id.append(f)
     error_set = set(error_id)
