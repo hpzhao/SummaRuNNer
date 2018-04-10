@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-#coding:utf8
 from .BasicModule import BasicModule
 import torch
 import torch.nn as nn
