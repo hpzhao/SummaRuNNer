@@ -1,7 +1,5 @@
-#!/usr/bin/env python
-#coding:utf8
-from __future__ import print_function, division, unicode_literals
-import io
+#!/usr/bin/env python3
+
 import json
 import models
 import utils
@@ -87,15 +85,15 @@ def train():
     logging.info('Loading vocab,train and val dataset.Wait a second,please')
     
     embed = torch.Tensor(np.load(args.embedding)['embedding'])
-    with io.open(args.word2id, encoding='utf-8') as f:
+    with open(args.word2id) as f:
         word2id = json.load(f)
     vocab = utils.Vocab(embed, word2id)
 
-    with io.open(args.train_dir, encoding='utf-8') as f:
+    with open(args.train_dir) as f:
         examples = [json.loads(line) for line in f]
     train_dataset = utils.Dataset(examples)
 
-    with io.open(args.val_dir, encoding='utf-8') as f:
+    with open(args.val_dir) as f:
         examples = [json.loads(line) for line in f]
     val_dataset = utils.Dataset(examples)
 
@@ -154,11 +152,11 @@ def train():
 def test():
      
     embed = torch.Tensor(np.load(args.embedding)['embedding'])
-    with io.open(args.word2id, encoding='utf-8') as f:
+    with open(args.word2id) as f:
         word2id = json.load(f)
     vocab = utils.Vocab(embed, word2id)
 
-    with io.open(args.test_dir, encoding='utf-8') as f:
+    with open(args.test_dir) as f:
         examples = [json.loads(line) for line in f]
     test_dataset = utils.Dataset(examples)
 
@@ -202,10 +200,10 @@ def test():
             doc = batch['doc'][doc_id].split('\n')[:doc_len]
             hyp = [doc[index] for index in topk_indices]
             ref = summaries[doc_id]
-            with io.open(os.path.join(args.ref,str(file_id)+'.txt'), 'w', encoding='utf-8') as f:
-                f.write(unicode(ref))
-            with io.open(os.path.join(args.hyp,str(file_id)+'.txt'), 'w', encoding='utf-8') as f:
-                f.write(unicode('\n'.join(hyp)))
+            with open(os.path.join(args.ref,str(file_id)+'.txt'), 'w') as f:
+                f.write(ref)
+            with open(os.path.join(args.hyp,str(file_id)+'.txt'), 'w') as f:
+                f.write('\n'.join(hyp))
             start = stop
             file_id = file_id + 1
     print('Speed: %.2f docs / s' % (doc_num / time_cost))

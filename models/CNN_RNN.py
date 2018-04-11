@@ -1,10 +1,9 @@
-#!/usr/bin/env python
-#coding:utf8
 from .BasicModule import BasicModule
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable
+
 class CNN_RNN(BasicModule):
     def __init__(self, args, embed=None):
         super(CNN_RNN,self).__init__()

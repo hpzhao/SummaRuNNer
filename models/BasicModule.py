@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-#coding:utf8
 import torch
 from torch.autograd import Variable
 class BasicModule(torch.nn.Module):

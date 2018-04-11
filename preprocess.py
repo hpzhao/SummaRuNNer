@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import argparse
 import json
 import numpy as np
@@ -93,7 +95,7 @@ def build_dataset(args):
     multi_res = [p.apply_async(worker,(fs,)) for fs in groups]
     res = [res.get() for res in multi_res]
     
-    with open(args.target_dir,'w',encoding='utf8') as f:
+    with open(args.target_dir, 'w') as f:
         for row in chain(*res):
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
 
