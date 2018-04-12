@@ -13,6 +13,7 @@
 <img src="images/CNN_RNN.png" width = "350" height = "300" align=center />
 </div>
 
+#### Hierarchical Attention Networks
 <div  align="center">
 <img src="images/Hiarchical_Attn.png" width = "350" height = "350" align=center />
 </div>
