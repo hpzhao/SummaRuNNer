@@ -3,14 +3,14 @@
 [![License](https://img.shields.io/badge/license-MIT-000000.svg)](https://opensource.org/licenses/MIT)
 ### Models
 
-## RNN_RNN
+#### RNN_RNN
 <div  align="center">
 <img src="images/RNN_RNN.jpg" width = "350" height = "350" align=center />
 </div>
 
-## CNN_RNN
+#### CNN_RNN
 <div  align="center">
-<img src="images/CNN_RNN.png" width = "350" height = "250" align=center />
+<img src="images/CNN_RNN.png" width = "350" height = "300" align=center />
 </div>
 
 <div  align="center">
