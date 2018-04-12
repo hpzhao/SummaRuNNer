@@ -3,17 +3,17 @@
 [![License](https://img.shields.io/badge/license-MIT-000000.svg)](https://opensource.org/licenses/MIT)
 ### Models
 
-#### RNN_RNN
+1. RNN_RNN
 <div  align="center">
 <img src="images/RNN_RNN.jpg" width = "350" height = "350" align=center />
 </div>
 
-#### CNN_RNN
+2. CNN_RNN
 <div  align="center">
-<img src="images/CNN_RNN.png" width = "350" height = "300" align=center />
+<img src="images/CNN_RNN.png" width = "350" height = "280" align=center />
 </div>
 
-#### Hierarchical Attention Networks
+3. Hierarchical Attention Networks
 <div  align="center">
 <img src="images/Hiarchical_Attn.png" width = "350" height = "350" align=center />
 </div>
