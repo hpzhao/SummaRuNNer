@@ -4,15 +4,12 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable
 
-class CNN_RNN(BasicModule):
+class RNN_RNN(BasicModule):
     def __init__(self, args, embed=None):
-        super(CNN_RNN,self).__init__(args)
-        self.model_name = 'CNN_RNN'
+        super(RNN, self).__init__(args)
+        self.model_name = 'RNN_RNN'
         self.args = args
         
-        Ks = args.kernel_sizes
-        Ci = args.embed_dim
-        Co = args.kernel_num
         V = args.embed_num
         D = args.embed_dim
         H = args.hidden_size
@@ -25,27 +22,20 @@ class CNN_RNN(BasicModule):
         if embed is not None:
             self.embed.weight.data.copy_(embed)
 
-        self.convs = nn.ModuleList([ nn.Sequential(
-                                            nn.Conv1d(Ci,Co,K),
-                                            nn.BatchNorm1d(Co),
-                                            nn.LeakyReLU(inplace=True),
-
-                                            nn.Conv1d(Co,Co,K),
-                                            nn.BatchNorm1d(Co),
-                                            nn.LeakyReLU(inplace=True)
-                                     )
-                                    for K in Ks])
-        self.sent_RNN = nn.GRU(
-                        input_size = Co * len(Ks),
+        self.word_RNN = nn.GRU(
+                        input_size = D,
                         hidden_size = H,
                         batch_first = True,
                         bidirectional = True
                         )
-        self.fc = nn.Sequential(
-                nn.Linear(2*H,2*H),
-                nn.BatchNorm1d(2*H),
-                nn.Tanh()
-                )
+        self.sent_RNN = nn.GRU(
+                        input_size = 2*H,
+                        hidden_size = H,
+                        batch_first = True,
+                        bidirectional = True
+                        )
+        self.fc = nn.Linear(2*H,2*H)
+
         # Parameters of Classification Layer
         self.content = nn.Linear(2*H,1,bias=False)
         self.salience = nn.Bilinear(2*H,2*H,1,bias=False)
@@ -76,32 +66,38 @@ class CNN_RNN(BasicModule):
         return out
     def forward(self,x,doc_lens):
         sent_lens = torch.sum(torch.sign(x),dim=1).data 
-        H = self.args.hidden_size
-        x = self.embed(x)                                                       # (N,L,D)
+        x = self.embed(x)                                                      # (N,L,D)
         # word level GRU
-        x = [conv(x.permute(0,2,1)) for conv in self.convs]
-        x = [F.max_pool1d(i, i.size(2)).squeeze(2) for i in x]
-        x = torch.cat(x,1)
+        H = self.args.hidden_size
+        x = self.word_RNN(x)[0]                                                 # (N,2*H,L)
+        #word_out = self.avg_pool1d(x,sent_lens)
+        word_out = self.max_pool1d(x,sent_lens)
         # make sent features(pad with zeros)
-        x = self.pad_doc(x,doc_lens)
+        x = self.pad_doc(word_out,doc_lens)
 
         # sent level GRU
         sent_out = self.sent_RNN(x)[0]                                           # (B,max_doc_len,2*H)
+        #docs = self.avg_pool1d(sent_out,doc_lens)                               # (B,2*H)
         docs = self.max_pool1d(sent_out,doc_lens)                                # (B,2*H)
-        docs = self.fc(docs)
         probs = []
         for index,doc_len in enumerate(doc_lens):
             valid_hidden = sent_out[index,:doc_len,:]                            # (doc_len,2*H)
-            doc = docs[index].unsqueeze(0)
-            s = Variable(torch.zeros(1,2*H)).cuda()
+            doc = F.tanh(self.fc(docs[index])).unsqueeze(0)
+            s = Variable(torch.zeros(1,2*H))
+            if self.args.device is not None:
+                s = s.cuda()
             for position, h in enumerate(valid_hidden):
                 h = h.view(1, -1)                                                # (1,2*H)
                 # get position embeddings
-                abs_index = Variable(torch.LongTensor([[position]])).cuda()
+                abs_index = Variable(torch.LongTensor([[position]]))
+                if self.args.device is not None:
+                    abs_index = abs_index.cuda()
                 abs_features = self.abs_pos_embed(abs_index).squeeze(0)
                 
                 rel_index = int(round((position + 1) * 9.0 / doc_len))
-                rel_index = Variable(torch.LongTensor([[rel_index]])).cuda()
+                rel_index = Variable(torch.LongTensor([[rel_index]]))
+                if self.args.device is not None:
+                    rel_index = rel_index.cuda()
                 rel_features = self.rel_pos_embed(rel_index).squeeze(0)
                 
                 # classification layer

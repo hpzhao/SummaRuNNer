@@ -23,7 +23,9 @@ parser.add_argument('-embed_num',type=int,default=100)
 parser.add_argument('-pos_dim',type=int,default=50)
 parser.add_argument('-pos_num',type=int,default=100)
 parser.add_argument('-seg_num',type=int,default=10)
-parser.add_argument('-model',type=str,default='RNN')
+parser.add_argument('-kernel_num',type=int,default=100)
+parser.add_argument('-kernel_sizes',type=str,default='3,4,5')
+parser.add_argument('-model',type=str,default='RNN_RNN')
 parser.add_argument('-hidden_size',type=int,default=200)
 # train
 parser.add_argument('-lr',type=float,default=1e-3)
@@ -100,6 +102,7 @@ def train():
     # update args
     args.embed_num = embed.size(0)
     args.embed_dim = embed.size(1)
+    args.kernel_sizes = [int(ks) for ks in args.kernel_sizes.split(',')]
     # build model
     net = getattr(models,args.model)(args,embed)
     if use_gpu:
@@ -172,7 +175,7 @@ def test():
     # if at test time, we are using a CPU, we must override device to None
     if not use_gpu:
         checkpoint['args'].device = None
-    net = getattr(models,args.model)(checkpoint['args'])
+    net = getattr(models,checkpoint['args'].model)(checkpoint['args'])
     net.load_state_dict(checkpoint['model'])
     if use_gpu:
         net.cuda()

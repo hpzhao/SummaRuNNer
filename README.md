@@ -1,9 +1,17 @@
 ## The PyTorch Implementation Of SummaRuNNer
 
 [![License](https://img.shields.io/badge/license-MIT-000000.svg)](https://opensource.org/licenses/MIT)
-### SummaRuNNer
+### Models
 <div  align="center">
-<img src="images/model.jpg" width = "350" height = "350" align=center />
+<img src="images/RNN_RNN.jpg" width = "350" height = "350" align=center />
+</div>
+
+<div  align="center">
+<img src="images/CNN_RNN.png" width = "350" height = "350" align=center />
+</div>
+
+<div  align="center">
+<img src="images/Hiarchical_Attn.png" width = "350" height = "350" align=center />
 </div>
 
 ### Setup
@@ -31,7 +39,9 @@ python main.py -test -model RNN -load_dir checkpoints/XXX.pt
 | model  | ROUGE-1   | ROUGE-2 | ROUGE-L |
 | ------ | :-----:   | :----:  | :----:  |
 |SummaRNNer(Nallapati)|26.2|10.8|14.4|
-|Our implementation|26.0|11.4|13.8|
+|RNN-RNN|26.0|11.4|13.8|
+|CNN-RNN|25.6|11.3|13.8|
+|Hierarchical Attn Net|26.1|11.5|13.8|
 
 ### Blog
 
