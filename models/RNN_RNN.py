@@ -6,7 +6,7 @@ from torch.autograd import Variable
 
 class RNN_RNN(BasicModule):
     def __init__(self, args, embed=None):
-        super(RNN, self).__init__(args)
+        super(RNN_RNN, self).__init__(args)
         self.model_name = 'RNN_RNN'
         self.args = args
         
