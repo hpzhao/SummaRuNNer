@@ -197,7 +197,7 @@ def test():
         for doc_id,doc_len in enumerate(doc_lens):
             stop = start + doc_len
             prob = probs[start:stop]
-            topk = min(3,doc_len)
+            topk = min(args.topk,doc_len)
             topk_indices = prob.topk(topk)[1].cpu().data.numpy()
             topk_indices.sort()
             doc = batch['doc'][doc_id].split('\n')[:doc_len]
