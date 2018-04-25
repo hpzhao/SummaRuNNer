@@ -10,7 +10,7 @@
 
 2. CNN_RNN
 <div  align="center">
-<img src="images/CNN_RNN.png" width = "350" height = "280" align=center />
+<img src="images/CNN_RNN.png" width = "350" height = "260" align=center />
 </div>
 
 3. Hierarchical Attention Networks
@@ -31,9 +31,9 @@ pipenv shell
 
 ```shell
 # train
-python main.py -device 0 -batch_size 32 -model RNN -seed 1 -save_dir checkpoints/XXX.pt
+python main.py -device 0 -batch_size 32 -model RNN_RNN -seed 1 -save_dir checkpoints/XXX.pt
 # test
-python main.py -test -model RNN -load_dir checkpoints/XXX.pt
+python main.py -device 0 -batch_size 1 -test -load_dir checkpoints/XXX.pt
 
 ```
 ### Result
