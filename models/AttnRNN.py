@@ -88,15 +88,21 @@ class AttnRNN(BasicModule):
         for index,doc_len in enumerate(doc_lens):
             valid_hidden = sent_out[index,:doc_len,:]                            # (doc_len,2*H)
             doc = F.tanh(self.fc(docs[index])).unsqueeze(0)
-            s = Variable(torch.zeros(1,2*H)).cuda()
+            s = Variable(torch.zeros(1,2*H))
+            if self.args.device is not None:
+                s = s.cuda()
             for position, h in enumerate(valid_hidden):
                 h = h.view(1, -1)                                                # (1,2*H)
                 # get position embeddings
-                abs_index = Variable(torch.LongTensor([[position]])).cuda()
+                abs_index = Variable(torch.LongTensor([[position]]))
+                if self.args.device is not None:
+                    abs_index = abs_index.cuda()
                 abs_features = self.abs_pos_embed(abs_index).squeeze(0)
                 
                 rel_index = int(round((position + 1) * 9.0 / doc_len))
-                rel_index = Variable(torch.LongTensor([[rel_index]])).cuda()
+                rel_index = Variable(torch.LongTensor([[rel_index]]))
+                if self.args.device is not None:
+                    rel_index = rel_index.cuda()
                 rel_features = self.rel_pos_embed(rel_index).squeeze(0)
                 
                 # classification layer
