@@ -40,7 +40,7 @@ parser.add_argument('-report_every',type=int,default=1500)
 parser.add_argument('-seq_trunc',type=int,default=50)
 parser.add_argument('-max_norm',type=float,default=1.0)
 # test
-parser.add_argument('-load_dir',type=str,default='checkpoints/RNN_seed_1.pt')
+parser.add_argument('-load_dir',type=str,default='checkpoints/RNN_RNN_seed_1.pt')
 parser.add_argument('-test_dir',type=str,default='data/test.json')
 parser.add_argument('-ref',type=str,default='outputs/ref')
 parser.add_argument('-hyp',type=str,default='outputs/hyp')
