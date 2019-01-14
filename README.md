@@ -2,6 +2,10 @@
 
 [![License](https://img.shields.io/badge/license-MIT-000000.svg)](https://opensource.org/licenses/MIT)
 
+### Statement
+
+**Not Official Implementation! Just For Learning and comunication!**
+
 ### Models
 
 1. RNN_RNN
