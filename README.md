@@ -4,7 +4,7 @@
 
 ### Statement
 
-**Not Official Implementation! Just For Learning and comunication!**
++ **Not Official Implementation! Just For Learning and comunication!**
 
 ### Models
 
