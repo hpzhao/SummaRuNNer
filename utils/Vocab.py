@@ -55,3 +55,30 @@ class Vocab():
         summaries = batch['summaries']
 
         return features,targets,summaries,doc_lens
+
+    def make_predict_features(self, batch, sent_trunc=150, doc_trunc=100, split_token='. '):
+        sents_list, doc_lens = [],[]
+        for doc in batch:
+            sents = doc.split(split_token)
+            max_sent_num = min(doc_trunc,len(sents))
+            sents = sents[:max_sent_num]
+            sents_list += sents
+            doc_lens.append(len(sents))
+        # trunc or pad sent
+        max_sent_len = 0
+        batch_sents = []
+        for sent in sents_list:
+            words = sent.split()
+            if len(words) > sent_trunc:
+                words = words[:sent_trunc]
+            max_sent_len = len(words) if len(words) > max_sent_len else max_sent_len
+            batch_sents.append(words)
+
+        features = []
+        for sent in batch_sents:
+            feature = [self.w2i(w) for w in sent] + [self.PAD_IDX for _ in range(max_sent_len-len(sent))]
+            features.append(feature)
+
+        features = torch.LongTensor(features)
+
+        return features, doc_lens
