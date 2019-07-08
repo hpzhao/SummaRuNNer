@@ -13,3 +13,5 @@ outputs/hyp/*
 outputs/ref/*
 !outputs/ref/.placeholder
 
+.DS_Store
+
