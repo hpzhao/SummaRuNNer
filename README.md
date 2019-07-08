@@ -39,7 +39,8 @@ pipenv shell
 python main.py -device 0 -batch_size 32 -model RNN_RNN -seed 1 -save_dir checkpoints/XXX.pt
 # test
 python main.py -device 0 -batch_size 1 -test -load_dir checkpoints/XXX.pt
-
+# predict
+python main.py -batch_size 1 -predict -filename x.txt -load_dir checkpoints/RNN_RNN_seed_1.pt
 ```
 ## pretrained models
 
