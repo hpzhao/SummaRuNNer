@@ -77,4 +77,4 @@ python main.py -batch_size 1 -predict -filename x.txt -load_dir checkpoints/RNN_
 
 ### Acknowledge
 
-+ Thanks for @[AlJohri](https://github.com/AlJohri)'s contribution
++ Thanks for @[AlJohri](https://github.com/AlJohri)'s and @[500swapnil](https://github.com/500swapnil)'s contribution
